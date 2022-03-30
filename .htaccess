@@ -1,0 +1,8 @@
+# removes the need to put index.php in urls
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /morpheus/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /morpheus/index.php/$1 [L]
+</IfModule>

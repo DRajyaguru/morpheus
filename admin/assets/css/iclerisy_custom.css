@@ -1,0 +1,71 @@
+:root{--bs-primary-rgb:3,165,235;--bs-secondary-rgb:23,79,144;--bs-dark-rgb:3,123,196;--bg-blue-dark:23,79,144;--bg-blue-light:3,165,235;--bs-primary: #03a5eb;--bs-secondary: #174f90;--bs-blue-dark:#174f90;--bs-blue-light:#03a5eb;--bs-success:#03a5eb;}
+.text-dark{color:#030303!important}
+.aside .menu>.menu-item>.menu-link:hover .menu-icon{background-color:rgba(23,79,144,1)}
+.aside .menu>.menu-item.show>.menu-link .menu-icon{background-color:rgba(23,79,144,1)}
+.badge-success {background-color:#037bc4}
+.bg-blue-dark {--bs-bg-opacity: 1;background-color: rgba(var(--bg-blue-dark),var(--bs-bg-opacity))!important;}
+.bg-blue-light {--bs-bg-opacity: 1;background-color: rgba(var(--bg-blue-light),var(--bs-bg-opacity))!important;}
+.bg-light-success {background-color:#abe1f9;}
+.bg-success {--bs-bg-opacity: 1;background-color: rgba(var(--bs-primary-rgb),var(--bs-bg-opacity))!important;}
+.badge-light-warning {color: #030303; background-color: #e9e9e9;}
+.badge-light-primary {color: #03a5eb; background-color: #ecf6ff;}
+.badge-light-success {color: #174f90; background-color: #ecf6ff;}
+.scrolltop, .scrolltop:hover {background-color: #174f90}
+.btn.btn-active-color-primary:hover:not(.btn-active) i {color: #03a5eb}
+.countdown {margin-top: 0.5rem;}
+.thumb_size {display:block;}
+.or-label label {background: rgba(23,79,144,1);padding: 10px;border-radius: 100%;color: white;font-weight: 500;}
+
+/*
+--bs-blue:#009ef6;
+--bs-indigo:#6610f2;
+--bs-purple:#6f42c1;
+--bs-pink:#d63384;
+--bs-red:#dc3545;
+--bs-orange:#fd7e14;
+--bs-yellow:#ffc107;
+--bs-green:#198754;
+--bs-teal:#20c997;
+--bs-cyan:#0dcaf0;
+--bs-gray:#7E8299;
+--bs-gray-dark:#3F4254;
+--bs-gray-100:#F5F8FA;
+--bs-gray-200:#EFF2F5;
+--bs-gray-300:#E4E6EF;
+--bs-gray-400:#B5B5C3;
+--bs-gray-500:#A1A5B7;
+--bs-gray-600:#7E8299;
+--bs-gray-700:#5E6278;
+--bs-gray-800:#3F4254;
+--bs-gray-900:#181C32;
+--bs-white:#ffffff;
+--bs-light:#F5F8FA;
+--bs-primary:#7239EA;
+--bs-secondary:#E4E6EF;
+--bs-success:#00D9D9;
+--bs-info:#009EF7;
+--bs-warning:#FFC700;
+--bs-danger:#F1416C;
+--bs-dark:#181C32;
+--bs-white-rgb:255,255,255;
+--bs-light-rgb:245,248,250;
+--bs-primary-rgb:114,57,234;
+--bs-secondary-rgb:228,230,239;
+--bs-success-rgb:0,217,217;
+--bs-info-rgb:0,158,247;
+--bs-warning-rgb:255,199,0;
+--bs-danger-rgb:241,65,108;
+--bs-dark-rgb:24,28,50;
+--bs-white-rgb:255,255,255;
+--bs-black-rgb:0,0,0;
+--bs-body-color-rgb:24,28,50;
+--bs-body-bg-rgb:255,255,255;
+--bs-font-sans-serif:Poppins,Helvetica,"sans-serif";--bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+--bs-body-font-family:var(--bs-font-sans-serif);
+--bs-body-font-size:1rem;
+--bs-body-font-weight:400;
+--bs-body-line-height:1.5;
+--bs-body-color:#181C32;
+--bs-body-bg:#ffffff
+*/
