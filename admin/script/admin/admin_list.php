@@ -10,7 +10,7 @@ $page 		= "admin";
 $top_title  = "Morpheus Admin List";
 $active_page = 'users';
 
-
+//Admin Status check code
 if(isset($_POST['status_change'])) {
 	$admin_id = $_POST['admin_id'];	
 	$status   = $_POST['status_val'];	
@@ -19,6 +19,7 @@ if(isset($_POST['status_change'])) {
 	$db->update('admin',$data);
 }
 
+//Admin Add & Update code
 if(isset($_POST['add_admin']) && $_POST['add_admin'] == 'Y') {
 	$admin_id       =   $_POST["admin_id"];
 	$first_name		=	$_POST["first_name"];
@@ -40,13 +41,15 @@ if(isset($_POST['add_admin']) && $_POST['add_admin'] == 'Y') {
 	exit;
 }
 
+//Admin delete code
 if(isset($_POST['delete_data']) && $_POST['delete_data'] == 'Y') {
-   $admin_ids = explode(",",$_POST['delete_admins']); 
+   $admin_ids = explode(",",$_POST['delete_admins']);
    $db->where('admin_id',$admin_ids, 'IN');
    $db->delete('admin');
    exit;
 }
 
+//Admin email already exists check code
 if(isset($_POST['type']) && $_POST['type'] == 'email_exist_check') {
 	$email	= $_POST["admin_email"]; 
 	$admin_id	= $_POST["admin_id"]; 
@@ -62,16 +65,18 @@ if(isset($_POST['type']) && $_POST['type'] == 'email_exist_check') {
       $json['valid'] = true;
 	}
 	echo json_encode($json);
-	exit;	
+	exit;
 }
 
+//Admin data fetch for Edit
 if(isset($_POST['edit_admin']) && $_POST['edit_admin'] == 'Y') {
-	$admin_id	= $_POST["admin_id"]; 
+	$admin_id	= $_POST["admin_id"];
 	$db->where ("admin_id",$admin_id);
 	$list=$db->getOne('admin');
 	echo json_encode($list);
-	exit;	
+	exit;
 }
+
 	
 $localvars = array("header"=>$header,"left"=>$left,"middle"=>$middle,"footer"=>$footer,"title"=>'Admin List',"page"=>$page,"top_title"=>$top_title,"active_page"=>$active_page);	
 $localvars = array_merge($global_arr, $localvars);

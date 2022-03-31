@@ -5,7 +5,7 @@ $fields  = array('c.customer_id','c.first_name','c.last_name','c.email_id','c.st
 $keys    = array('customer_id');
 $alias   = array('c');
 
-
+//Number of columns to show in Customer List
 $columns = array(
 	array('db' => 'customer_id',		
 	      'dt' => 0,

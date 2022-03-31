@@ -8,8 +8,9 @@ $footer		= ADMIN_TEMPLATE_PATH."admin/bottom/bottom.tpl";
 $indexfile	= ADMIN_TEMPLATE_PATH."admin/index.tpl";
 $page 		= "category_list";
 $top_title  = "Morpheus Category List";
-$active_page = "inventory";
+$active_page = "video";
 
+// Category Status Change Code from Listing
 if(isset($_POST['status_change'])) {
 	$category_id = $_POST['category_id'];	
 	$status   	 = $_POST['status_val'];	
@@ -18,6 +19,7 @@ if(isset($_POST['status_change'])) {
 	$db->update('category',$data);
 }
 
+// Category Delete Code
 if(isset($_POST['delete_data']) && $_POST['delete_data'] == 'Y') {
    $category_ids = explode(",",$_POST['delete_categories']);
    $db->where('category_id',$category_ids, 'IN');

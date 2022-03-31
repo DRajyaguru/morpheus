@@ -11,6 +11,7 @@ $top_title  = "Morpheus Add Credits";
 $credits_list = array();
 $active_page = "credits";
 
+//Credits Add & Update code
 if(isset($_POST['add_credits']) && $_POST['add_credits'] == 'Y') {
 	$package_name      =  $_POST["package_name"];
 	$credits		 =  $_POST["credits"];	
@@ -34,6 +35,7 @@ if(isset($_POST['add_credits']) && $_POST['add_credits'] == 'Y') {
 	}
 }
 
+//Credits data fetch for Edit
 if(isset($_GET['axn']) && $_GET['axn'] == 'edit') {
 	$top_title  = "Morpheus Edit Credits";
 	$title      = "Credits Edit";

@@ -11,6 +11,7 @@ $top_title  = "Morpheus Credits List";
 $credits_list = array();
 $active_page = "credits";
 
+//Credits Status check code
 if(isset($_POST['status_change'])) {
 	$credits_id = $_POST['credits_id'];
 	$status   	 = $_POST['status_val'];
@@ -18,6 +19,8 @@ if(isset($_POST['status_change'])) {
 	$db->where('credits_id', $credits_id);
 	$db->update('credits',$data);
 }
+
+//Credits delete code
 if(isset($_POST['delete_data']) && $_POST['delete_data'] == 'Y') {
   $credits_ids = explode(",",$_POST['delete_credits']);
   $db->where('credits_id',$credits_ids, 'IN');

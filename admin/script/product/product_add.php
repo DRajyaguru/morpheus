@@ -9,10 +9,11 @@ $indexfile	= ADMIN_TEMPLATE_PATH."admin/index.tpl";
 $page 		= "product";
 $title      = "Product Add";
 $top_title  = "Morpheus Add Product";
-$active_page = "inventory";
+$active_page = "video";
 
 $category_list=$db->get('category',null,'category_id,category_name');
 
+//Product Add & Update Code
 if(isset($_POST['add_product']) && $_POST['add_product'] == 'Y') {
 	/*echo '<pre>';
 	print_r($_POST);

@@ -5,6 +5,7 @@ $fields  = array('c.category_id','c.category_name','c.category_name','c.category
 $keys    = array('category_id');
 $alias   = array('c');
 
+//Number of columns to show in Category List
 $columns = array(
 	array('db' => 'category_id',		
 	      'dt' => 0,

@@ -5,7 +5,7 @@ $fields  = array('c.credits_id','c.package_name','c.credits','c.amount','c.statu
 $keys    = array('credits_id');
 $alias   = array('c');
 
-
+//Number of columns show in Credits List
 $columns = array(
 	array('db' => 'credits_id',		
 	      'dt' => 0,

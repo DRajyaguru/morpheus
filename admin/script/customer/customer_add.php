@@ -11,6 +11,7 @@ $top_title  = "Morpheus Add Customer";
 $customer_list = array();
 $active_page = "users";
 
+//Customer Add & Update code
 if(isset($_POST['add_customer']) && $_POST['add_customer'] == 'Y') {
 	$first_name      =  $_POST["first_name"];
 	$last_name		 =  $_POST["last_name"];	
@@ -43,6 +44,7 @@ if(isset($_POST['add_customer']) && $_POST['add_customer'] == 'Y') {
 	}
 }
 
+//Customer Phone Number Validate code
 if(isset($_POST['type']) && $_POST['type'] == 'customer_phone_check') {
 	$phone_no = $_POST["phone_no"];
 	$customer_id = $_POST["customer_id"]; 
@@ -61,6 +63,7 @@ if(isset($_POST['type']) && $_POST['type'] == 'customer_phone_check') {
 	exit;
 }
 
+//Customer eamil already exist check code
 if(isset($_POST['type']) && $_POST['type'] == 'customer_email_check') {
 	$email_id = $_POST["email_id"];
 	$customer_id = $_POST["customer_id"]; 
@@ -78,6 +81,8 @@ if(isset($_POST['type']) && $_POST['type'] == 'customer_email_check') {
 	echo json_encode($json);
 	exit;
 }
+
+//Customer data fetch for Edit
 if(isset($_GET['axn']) && $_GET['axn'] == 'edit') {
 	$top_title  = "Morpheus Edit Customer";
 	$title      = "Customer Edit";

@@ -10,8 +10,9 @@ $page 		= "category";
 $title      = "Category Add";
 $top_title  = "Morpheus Add Category";
 $category_list       = array();
-$active_page = "inventory";
+$active_page = "video";
 
+// Category Add & Update Code
 if(isset($_POST['add_category']) && $_POST['add_category'] == 'Y') {
 	$category_name     =  $_POST["category_name"];
 	$description	   =  $_POST["description"];	
@@ -54,6 +55,7 @@ if(isset($_POST['add_category']) && $_POST['add_category'] == 'Y') {
 	}
 }
 
+
 if(isset($_POST['type']) && $_POST['type'] == 'category_name_check') {
 	$category_name = $_POST["category_name"];
 	$category_id = $_POST["category_id"]; 
@@ -72,6 +74,7 @@ if(isset($_POST['type']) && $_POST['type'] == 'category_name_check') {
 	exit;
 }
 
+//Clean URL check code
 if(isset($_POST['type']) && $_POST['type'] == 'clean_url_check') {
 	$clean_url = $_POST["clean_url"];
 	$category_id = $_POST["category_id"]; 
@@ -90,6 +93,7 @@ if(isset($_POST['type']) && $_POST['type'] == 'clean_url_check') {
 	exit;
 }
 
+//Category data fetch for edit
 if(isset($_GET['axn']) && $_GET['axn'] == 'edit') {
 	$top_title  = "Morpheus Edit Category";
 	$title      = "Category Edit";
