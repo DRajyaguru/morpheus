@@ -11,6 +11,7 @@ $top_title  = "Morpheus Add Webpage";
 $webpage_list = array();
 $active_page = "webpage";
 
+//Webpage Add & Update Code
 if(isset($_POST['add_webpage']) && $_POST['add_webpage'] == 'Y') {
 	$page_title      =  $_POST["page_title"];
 	$description	   =  $_POST["description"];	
@@ -35,6 +36,7 @@ if(isset($_POST['add_webpage']) && $_POST['add_webpage'] == 'Y') {
 	}
 }
 
+//Webpage Name Already Exists Code
 if(isset($_POST['type']) && $_POST['type'] == 'webpage_name_check') {
 	$webpage_name = $_POST["page_title"];
 	$webpage_id = $_POST["webpage_id"]; 
@@ -52,6 +54,8 @@ if(isset($_POST['type']) && $_POST['type'] == 'webpage_name_check') {
 	echo json_encode($json);
 	exit;
 }
+
+//Check Clean URL Code
 if(isset($_POST['type']) && $_POST['type'] == 'clean_url_check') {
 	$clean_url = $_POST["clean_url"];
 	$webpage_id = $_POST["webpage_id"]; 
@@ -70,6 +74,7 @@ if(isset($_POST['type']) && $_POST['type'] == 'clean_url_check') {
 	exit;
 }
 
+//Webpage data fetch for Edit
 if(isset($_GET['axn']) && $_GET['axn'] == 'edit') {
 	$top_title  = "Morpheus Edit Webpage";
 	$title      = "Webpage Edit";

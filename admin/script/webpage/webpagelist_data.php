@@ -5,6 +5,7 @@ $fields  = array('w.webpage_id','w.page_title','w.status');
 $keys    = array('webpage_id');
 $alias   = array('w');
 
+//Number of Columns to show in Webpage List
 $columns = array(
 	array('db' => 'webpage_id',		
 	      'dt' => 0,
@@ -28,7 +29,7 @@ $columns = array(
 				  return  '<div class="form-check form-switch form-check-custom form-check-solid"><input class="form-check-input h-30px w-50px status" name="status" type="checkbox" data-id="'.$row['webpage_id'].'" value="'.$row['status'].'" id="flexSwitchChecked" />
     <label class="form-check-label" for="flexSwitchChecked"></div>';
 			  }
-		  }),		  
+		  }),
 		  
 	array('db' => 'webpage_id',
 		  'dt' => 3,
