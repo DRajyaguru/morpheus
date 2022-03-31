@@ -1,16 +1,19 @@
 "use strict";
 var KTCustomer = (function () {
-    var t,
-        e,
-        n = () => {
-            t.querySelectorAll('[customer-filter="delete_row"]').forEach((t) => {
+    var e,
+        t,
+        n,
+        r,
+        o = document.getElementById("customer_table"),
+        c = () => {
+            o.querySelectorAll('[customer-filter="delete_row"]').forEach((t) => {
                 t.addEventListener("click", function (t) {
                     t.preventDefault();
                     const n = t.target.closest("tr"),
-                        o = n.querySelector('[customer-filter="first_name"]').innerText;
-					var delete_customer = $(this).attr('data-id');	
+                        r = n.querySelector('[customer-filter="first_name"]').innerText;
+					var delete_customer = $(this).attr('data-id');
                     Swal.fire({
-                        text: "Are you sure you want to delete " + o + "?",
+                        text: "Are you sure you want to delete " + r + "?",
                         icon: "warning",
                         showCancelButton: !0,
                         buttonsStyling: !1,
@@ -22,14 +25,14 @@ var KTCustomer = (function () {
 							delete_selected_customer(delete_customer);
 						}
                         t.value
-                            ? Swal.fire({ text: "You have deleted " + o + "!.", icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } })
-                            .then(function () {
-                                  e.row($(n)).remove().draw();
-                              })
-                              .then(function(){
-                                  a();
-                              })
-                            : "cancel" === t.dismiss && Swal.fire({ text: o + " was not deleted.", icon: "error", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } });
+                            ? Swal.fire({ text: "You have deleted " + r + "!.", icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } })
+                                  .then(function () {
+                                      e.row($(n)).remove().draw();
+                                  })
+                                  .then(function () {
+                                      a();
+                                  })
+                            : "cancel" === t.dismiss && Swal.fire({ text: r + " was not deleted.", icon: "error", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } });
                     });
                 });
             });
@@ -38,13 +41,15 @@ var KTCustomer = (function () {
             const c = o.querySelectorAll('[type="checkbox"]:not(.status)');
             (t = document.querySelector('[data-customer-table-toolbar="base"]')), (n = document.querySelector('[data-customer-table-toolbar="selected"]')), (r = document.querySelector('[data-customer-table-select="selected_count"]'));
             const s = document.querySelector('[data-customer-table-select="delete_selected"]');
-            c.forEach((e) => {                
+			
+            c.forEach((e) => {
                 e.addEventListener("click", function () {
                     setTimeout(function () {
                         a();
                     }, 50);
                 });
             }),
+			
 			s.addEventListener("click", function () {
 				Swal.fire({
 					text: "Are you sure you want to delete selected customer?",
@@ -64,11 +69,12 @@ var KTCustomer = (function () {
 								delete_customer.push(value);
 							}
 						});
-						
 						delete_selected_customer(delete_customer);
+						
 					} 
+					
 					t.value
-						? Swal.fire({ text: "You have deleted all selected customers!.", icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } })
+						? Swal.fire({ text: "You have deleted all selected customer!.", icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } })
 							  .then(function () {
 								  c.forEach((t) => {
 									  /*t.checked &&
@@ -83,12 +89,13 @@ var KTCustomer = (function () {
 								  a(), l();
 							  })
 						: "cancel" === t.dismiss &&
-						  Swal.fire({ text: "Selected customers was not deleted.", icon: "error", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } });
+						  Swal.fire({ text: "Selected customer was not deleted.", icon: "error", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } });
 				});
 			});
         };
     const a = () => {
         const e = o.querySelectorAll('tbody [type="checkbox"]:not(.status)');
+		
         let c = !1,
             l = 0;
         e.forEach((e) => {
@@ -98,13 +105,35 @@ var KTCustomer = (function () {
     };
     return {
         init: function () {
-			
-            (t = document.querySelector("#customer_table")) &&
-                ((e = $(t).DataTable({
+            o &&
+                (o.querySelectorAll("tbody tr").forEach((e) => {
+                    const t = e.querySelectorAll("td"),
+                        n = t[3].innerText.toLowerCase();
+                    let r = 0,
+                        o = "minutes";
+                    n.includes("yesterday")
+                        ? ((r = 1), (o = "days"))
+                        : n.includes("mins")
+                        ? ((r = parseInt(n.replace(/\D/g, ""))), (o = "minutes"))
+                        : n.includes("hours")
+                        ? ((r = parseInt(n.replace(/\D/g, ""))), (o = "hours"))
+                        : n.includes("days")
+                        ? ((r = parseInt(n.replace(/\D/g, ""))), (o = "days"))
+                        : n.includes("weeks") && ((r = parseInt(n.replace(/\D/g, ""))), (o = "weeks"));
+                    const c = moment().subtract(r, o).format();
+                    t[3].setAttribute("data-order", c);
+                    const l = moment(t[5].innerHTML, "DD MMM YYYY, LT").format();
+                    t[5].setAttribute("data-order", l);
+                }),
+                (e = $(o).DataTable({
                     info: !1,
                     order: [],
+					/*lengthMenu: [
+						[5,10,20,50,100,200,-1],
+						[5,10,20,50,100,200,'ALL']
+					],*/
                     pageLength: 10,
-					lengthChange: !1,
+                    lengthChange: !1,
 					"processing": true,
 					"serverSide": true,
 					"sServerMethod": "POST",
@@ -115,19 +144,29 @@ var KTCustomer = (function () {
 						{"targets":[5], "className":"text-end"},
                     ],
                 })).on("draw", function () {
-                    n();
+                    l(), c(), a();
 					KTMenu.createInstances();
                 }),
+                l(),
                 document.querySelector('[customer-filter="search"]').addEventListener("keyup", function (t) {
                     e.search(t.target.value).draw();
                 }),
-                n());
+                c(),
+                (() => {
+                })());
         },
     };
 })();
 KTUtil.onDOMContentLoaded(function () {
     KTCustomer.init();
 });
+
+$('body').on('click', '.add_customer', function() {
+	$('#add_customer_form .invalid-feedback').empty();
+	$("input[name='']").remove();
+    $("#add_customer_form").prepend('<input type="hidden" name="customer_id" value=0 class="customer_id" />');
+});
+
 
 $('body').on('click', '.status', function() {
 	var customer_id  = $(this).attr("data-id");
