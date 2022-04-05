@@ -2,7 +2,7 @@
 <script src="assets/plugins/global/plugins.bundle.js" type="text/javascript"></script>
 <script src="assets/js/scripts.bundle.js" type="text/javascript"></script>
 <!--end::Global Javascript Bundle-->
-{if $page eq 'admin' || $page eq 'dashboard' || $page eq 'category' || $page eq 'category_list' || $page eq 'webpage' || $page eq 'webpage_list' || $page eq 'customer' || $page eq 'customer_list' || $page eq 'credits' || $page eq 'credits_list'}
+{if $page eq 'admin' || $page eq 'dashboard' || $page eq 'category' || $page eq 'category_list' || $page eq 'webpage' || $page eq 'webpage_list' || $page eq 'customer' || $page eq 'customer_list' || $page eq 'credits' || $page eq 'credits_list' || $page eq 'orders' || $page eq 'order_list'}
 <!--begin::Page Vendors Javascript(used by this page)-->
 <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Page Vendors Javascript-->
@@ -15,6 +15,7 @@
 <!--begin::Page Custom Javascript(used by this page)-->
 <script src="assets/js/custom/apps/admin-management/admins.js"></script>
 <script src="assets/js/custom/apps/admin-management/save-admin.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>-->
 <!--end::Page Custom Javascript-->
 {elseif $page eq 'dashboard'}
 <!--begin::Page Vendors Javascript(used by this page)-->
@@ -60,10 +61,14 @@
 <!--begin::Page Vendors Javascript(used by this page)-->
 <script src="assets/js/custom/apps/credits/credits.js" type="text/javascript"></script>
 <!--end::Page Vendors Javascript-->
+{elseif $page eq 'order_list'}
+<!--begin::Page Vendors Javascript(used by this page)-->
+<script src="assets/js/custom/apps/order/orders.js" type="text/javascript"></script>
+<!--end::Page Vendors Javascript-->
 
 
 {/if}
-{if $page eq 'admin' || $page eq 'dashboard' || $page eq 'category' || $page eq 'category_list' || $page eq 'webpage' || $page eq 'webpage_list' || $page eq 'customer' || $page eq 'customer_list' || $page eq 'credits' || $page eq 'credits_list'}
+{if $page eq 'admin' || $page eq 'dashboard' || $page eq 'category' || $page eq 'category_list' || $page eq 'webpage' || $page eq 'webpage_list' || $page eq 'customer' || $page eq 'customer_list' || $page eq 'credits' || $page eq 'credits_list' || $page eq 'order_list'}
 <!--begin::Page Custom Javascript(used by this page)-->
 <script src="assets/js/widgets.bundle.js"></script>
 <script src="assets/js/custom/widgets.js"></script>
