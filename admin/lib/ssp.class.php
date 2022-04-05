@@ -94,14 +94,14 @@ class SSP {
 					$table_name = 'category';
 				}
 				
-				if($column['db']=='orders_id' && $column['dt']==0){
+				if($column['db']=='order_id' && $column['dt']==0){
 					$table_name = 'orders';
 				}
 				
 				if(!isset($table_name)){
 					$table_name = 'any';
 				}
-				
+				//echo $table_name;exit;
 				if ($table_name == 'category' && $requestColumn['searchable'] == 'true' ) {
 						$binding = self::bind( $bindings, '%'.$str.'%', PDO::PARAM_STR );
 						$globalSearch[] = "c.".$column['db']." LIKE ".$binding;
@@ -116,7 +116,7 @@ class SSP {
 				}
 				elseif ($table_name == 'orders' && $requestColumn['searchable'] == 'true' ) {
 					    $binding = self::bind( $bindings, '%'.$str.'%', PDO::PARAM_STR );
-						if($column['db']=='fname' || $column['db']=='lname' || $column['db']=='email')
+						if($column['db']=='first_name' || $column['db']=='last_name' || $column['db']=='email')
 						{
 							$concat = "c.";
 						}
