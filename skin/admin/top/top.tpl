@@ -40,15 +40,6 @@
             <!--end::Navbar-->
             <!--begin::Toolbar wrapper-->
             <div class="d-flex align-items-stretch justify-self-end flex-shrink-0">
-                <!--begin::Theme mode-->
-                <div class="d-flex align-items-center ms-1 ms-lg-3">
-                    <!--begin::Theme mode docs-->
-                    <a class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px" href="../../demo1/dist/documentation/getting-started/dark-mode.html">
-                        <i class="fonticon-sun fs-2"></i>
-                    </a>
-                    <!--end::Theme mode docs-->
-                </div>
-                <!--end::Theme mode-->
                 <!--begin::User-->
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                     <!--begin::Menu wrapper-->

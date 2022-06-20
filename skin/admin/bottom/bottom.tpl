@@ -5,7 +5,7 @@
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
             <span class="text-gray-400 fw-bold me-1">2022 ©</span>
-            <a href="#" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">Morpheus </a>
+            <a href="#" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">MORPHEUS MARKETPLACE INC.</a>
         </div>
         <!--end::Copyright-->
         <!--begin::Menu-->

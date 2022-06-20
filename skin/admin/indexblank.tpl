@@ -6,6 +6,7 @@
 	<meta name="description" content=""> 
 	<meta name="keywords" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../admin/assets/images/favicon.ico" />
     {include file="assets/css/main_css.tpl"}
 </head>
 <body>

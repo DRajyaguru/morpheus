@@ -6,9 +6,10 @@
 	<meta name="description" content=""> 
 	<meta name="keywords" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../admin/assets/images/favicon.ico" />
     {include file="assets/css/main_css.tpl"}
 </head>
-<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-disabled">
+<body class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-disabled">
  <!--begin::Main-->
  <!--begin::root-->
  <div class="d-flex flex-column flex-root">

@@ -2,7 +2,7 @@
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Container-->
     <div class="container-xxl" id="kt_content_container">
-        <form id="add_category_form" class="form d-flex flex-column flex-lg-row" data-kt-redirect="#" enctype="multipart/form-data">
+        <form id="add_category_form" class="form d-flex flex-column flex-lg-row" data-kt-redirect="index.php?file=category/category_list" enctype="multipart/form-data">
             <input type="hidden" name="category_id" class="category_id" value="{$category_list.category_id}" />
             <input type="hidden" name="img_name" class="img_name" value="{$category_list.category_img}" />
             <!--begin::Aside column-->

@@ -18,7 +18,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" customer-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search" />
+                        <input type="text" customer-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Customer" />
                     </div>
                     <!--end::Search-->
                 </div>
@@ -26,9 +26,24 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
                     <!--begin::Toolbar-->
-                    <div class="d-flex justify-content-end" data-customer-table-toolbar="base">
-                        <!--begin::Add user-->
-                        <a class="btn btn-primary"  data-bs-target="#kt_modal_add_customer" href="index.php?file=customer/customer_add">
+                    <div class="d-flex justify-content-end me-5">
+                        <!--begin::Add Batch Credit-->
+                        <button type="button" class="btn btn-primary add_batch_credit" data-bs-toggle="modal" data-bs-target="#add_batch_credit" disabled="disabled">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                        <span class="svg-icon svg-icon-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
+                                <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->Add Batch Credit</button>
+                        <!--end::Add Batch Credit-->
+                    </div>
+                    <!--end::Toolbar-->
+                    <!--begin::Toolbar-->
+                    <div class="d-flex justify-content-end" customer-table-toolbar="base">
+                        <!--begin::Add customer-->
+                        <a class="btn btn-primary" href="index.php?file=customer/customer_add">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                         <span class="svg-icon svg-icon-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -37,29 +52,29 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->Add Customer</a>
-                        <!--end::Add user-->
+                        <!--end::Add customer-->
                     </div>
                     <!--end::Toolbar-->
                     <!--begin::Group actions-->
-                    <div class="d-flex justify-content-end align-items-center d-none" data-customer-table-toolbar="selected">
+                    <div class="d-flex justify-content-end align-items-center d-none" customer-table-toolbar="selected">
                         <div class="fw-bolder me-5">
-                        <span class="me-2" data-customer-table-select="selected_count"></span>Selected</div>
-                        <button type="button" class="btn btn-danger" data-customer-table-select="delete_selected">Delete Selected</button>
+                        <span class="me-2" customer-table-select="selected_count"></span>Selected</div>
+                        <button type="button" class="btn btn-danger" customer-table-select="delete_selected">Delete Selected</button>
                     </div>
                     <!--end::Group actions-->
-                    <!--begin::Modal - Add task-->
-                    <div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="true">
+                     <!--begin::Modal - Add credit-->
+                    <div class="modal fade" id="add_batch_credit" tabindex="-1" aria-hidden="true">
                         <!--begin::Modal dialog-->
                         <div class="modal-dialog modal-dialog-centered mw-650px">
                             <!--begin::Modal content-->
                             <div class="modal-content">
                                 <!--begin::Modal header-->
-                                <div class="modal-header" id="kt_modal_add_customer_header">
+                                <div class="modal-header" id="add_batch_credit_header">
                                     <!--begin::Modal title-->
-                                    <h2 class="fw-bolder">Add Customer</h2>
+                                    <h2 class="fw-bolder">Add Batch Credit</h2>
                                     <!--end::Modal title-->
                                     <!--begin::Close-->
-                                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-customer-modal-action="close">
+                                    <div class="btn btn-icon btn-sm btn-active-icon-primary" credits-modal-action="close">
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                         <span class="svg-icon svg-icon-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -72,13 +87,44 @@
                                     <!--end::Close-->
                                 </div>
                                 <!--end::Modal header-->
-                                
+                                <!--begin::Modal body-->
+                                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                    <!--begin::Form-->
+                                    <form id="add_batch_credit_form" class="form" action="#">
+                                        <!--begin::Scroll-->
+                                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="add_batch_credit_scroll" data-kt-scroll="true" data-kt-scroll-activate="{literal}{default: false, lg: true}{/literal}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#add_batch_credit_header" data-kt-scroll-wrappers="#add_batch_credit_scroll" data-kt-scroll-offset="300px">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row">
+                                                <!--begin::Label-->
+                                                <label class="required fw-bold fs-6">Credits</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="credits" class="form-control form-control-solid mb-3 mb-lg-0 total_credits" placeholder="Credits" value="" />
+                                                <!--end::Input-->
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                        <!--end::Scroll-->
+                                        <!--begin::Actions-->
+                                        <div class="text-center pt-15">
+                                            <button type="reset" class="btn btn-light me-3" credits-modal-action="cancel">Discard</button>
+                                            <button type="submit" class="btn btn-primary" credits-modal-action="submit">
+                                                <span class="indicator-label">Submit</span>
+                                                <span class="indicator-progress">Please wait...
+                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                            </button>
+                                        </div>
+                                        <!--end::Actions-->
+                                    </form>
+                                    <!--end::Form-->
+                                </div>
+                                <!--end::Modal body-->
                             </div>
                             <!--end::Modal content-->
                         </div>
                         <!--end::Modal dialog-->
                     </div>
-                    <!--end::Modal - Add task-->
+                    <!--end::Modal - Add credit-->
                 </div>
                 <!--end::Card toolbar-->
             </div>
@@ -99,6 +145,7 @@
                             <th class="min-w-125px">First Name</th>
                             <th class="min-w-125px">Last Name</th>
                             <th class="min-w-125px">Email</th>
+                            <th class="min-w-125px">Credits</th>
                             <th class="min-w-125px">Status</th>
                             <th class="text-end min-w-100px">Actions</th>
                         </tr>

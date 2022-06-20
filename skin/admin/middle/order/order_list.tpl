@@ -18,14 +18,11 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search" />
+                        <input type="text" order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Order" />
                     </div>
                     <!--end::Search-->
                 </div>
                 <!--begin::Card title-->
-                <!--begin::Card toolbar-->
-                
-                <!--end::Card toolbar-->
             </div>
             <!--end::Card header-->
             <!--begin::Card body-->
@@ -36,13 +33,11 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-                          
                             <th class="min-w-125px">Order ID</th>
                             <th class="min-w-125px">Customer</th>
-                            <th class="min-w-125px">Status</th>
-                            <th class="min-w-125px">Total</th>
-                            <th class="min-w-125px">Order Date</th>
-                            
+                            <th class="min-w-150px text-end">Total Credits</th>
+                            <th class="min-w-150px text-end">Status</th>
+                            <th class="min-w-125px text-end">Order Date</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
