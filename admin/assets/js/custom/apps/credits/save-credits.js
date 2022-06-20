@@ -1,12 +1,13 @@
 "use strict";
-var KTAppEcommerceSaveCredits = (function () {
+var SaveCredits = (function () {
     const e = () => {},
         t = () => {};
+	var quill;	
     return {
         init: function () {
             ["#add_credits_description"].forEach((e) => {
                 let t = document.querySelector(e);
-                t && (t = new Quill(e, { modules: { toolbar: [[{ header: [1, 2, !1] }], ["bold", "italic", "underline"], ["code-block"]] }, placeholder: "Type your text here...", theme: "snow" }));
+                t && (quill = new Quill(e, { modules: { toolbar: [ [{ header: [1, 2, 3, 4, 5, 6, !1] }], [{ 'header': 1 }, { 'header': 2 }], ['bold', 'italic', 'underline', 'strike'], ["link"], [{ 'list': 'ordered'}, { 'list': 'bullet' }], [{ 'script': 'sub'}, { 'script': 'super' }], ["blockquote", "code-block"], [{ 'color': [] }, { 'background': [] }], [{ 'align': [] }] ] }, placeholder: "Type your text here...", theme: "snow" }));
             }),
                 e(),
                 t(),
@@ -17,8 +18,9 @@ var KTAppEcommerceSaveCredits = (function () {
                     (e = FormValidation.formValidation(t, {
                         fields: {
                             package_name: { validators: {notEmpty:{message:"Package Name is required"},regexp: {regexp: /^[a-zA-Z0-9_\ ]+$/, message: 'Package Name can only consist of alphanumeric and space.'} } },
-                            credits: { validators: {notEmpty:{message:"Credits is required"},regexp: {regexp: /^[0-9_\ ]+$/, message: 'Please Enter Digits only.'} } },
-                            amount: { validators: {notEmpty:{message:"Amount is required"},regexp: {regexp: /^\$?[0-9]*[0-9]\.?[0-9]{0,3}$/, message: 'Please Enter Digits only.'} } },
+                            credits: { validators: {notEmpty:{message:"Credits is required"},stringLength: {max: 5, message: "Maximum 5 digits allowed." }, regexp: {regexp: /^[0-9_\ ]+$/, message: 'Please enter digits only.'} } },
+                            amount: { validators: {notEmpty:{message:"Amount is required"},regexp: {regexp: /^\d{0,5}(\.\d{1,2})?$/, message: 'Max 5 digits allowed with optional 2 decimal digits.'} } },
+							///^[0-9]*(\.[0-9]{0,2})?$/
                         },
                         plugins: { trigger: new FormValidation.plugins.Trigger(), bootstrap: new FormValidation.plugins.Bootstrap5({ rowSelector: ".fv-row", eleInvalidClass: "", eleValidClass: "" }) },
                     })),
@@ -32,7 +34,11 @@ var KTAppEcommerceSaveCredits = (function () {
                                               (o.disabled = !0),
                                               setTimeout(function () {
                                                 var formData	= $('#add_credits_form').serialize();
-                                                var description = $("#add_credits_description .ql-editor").html();
+												var description = quill.root.innerHTML.replace(/&nbsp;/gi,"");
+												if($("#add_credits_description .ql-editor").hasClass('ql-blank')) {
+												   description = '';
+												}
+													  
                                                 var credits_id = $('.credits_id').val();
                                                   if(credits_id) {
                                                      var text_msg = "Credits has been successfully updated!";
@@ -78,7 +84,7 @@ var KTAppEcommerceSaveCredits = (function () {
     };
 })();
 KTUtil.onDOMContentLoaded(function () {
-    KTAppEcommerceSaveCredits.init();
+    SaveCredits.init();
 });
 
 $('body').on('click', '.status', function() {	

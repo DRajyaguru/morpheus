@@ -1,17 +1,17 @@
 "use strict";
-var CreditsList = (function () {
+var WebpagesList = (function () {
     var e,
         t,
         n,
         r,
-        o = document.getElementById("credits_table"),
+        o = document.getElementById("webpage_table"),
         c = () => {
-            o.querySelectorAll('[credits-filter="delete_row"]').forEach((t) => {
+            o.querySelectorAll('[webpage-filter="delete_row"]').forEach((t) => {
                 t.addEventListener("click", function (t) {
                     t.preventDefault();
                     const n = t.target.closest("tr"),
-                        r = n.querySelector('[credits-filter="package_name"]').innerText;
-					var credits_id = $(this).attr('data-id');
+                        r = n.querySelector('[webpage-filter="page_title"]').innerText;
+					var webpages_id = $(this).attr('data-id');
                     Swal.fire({
                         text: "Are you sure you want to delete " + r + "?",
                         icon: "warning",
@@ -22,7 +22,7 @@ var CreditsList = (function () {
                         customClass: { confirmButton: "btn fw-bold btn-danger", cancelButton: "btn fw-bold btn-active-light-primary" },
                     }).then(function (t) {
 						if(t.value) {
-							delete_selected_credits(credits_id);
+							delete_selected_webpage(webpages_id);
 						}
                         t.value
                             ? Swal.fire({ text: "You have deleted " + r + "!.", icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } })
@@ -39,8 +39,8 @@ var CreditsList = (function () {
         },
         l = () => {
             const c = o.querySelectorAll('[type="checkbox"]:not(.status)');
-            (t = document.querySelector('[credits-table-toolbar="base"]')), (n = document.querySelector('[credits-table-toolbar="selected"]')), (r = document.querySelector('[credits-table-select="selected_count"]'));
-            const s = document.querySelector('[credits-table-select="delete_selected"]');
+            (t = document.querySelector('[webpage-table-toolbar="base"]')), (n = document.querySelector('[webpage-table-toolbar="selected"]')), (r = document.querySelector('[webpage-table-select="selected_count"]'));
+            const s = document.querySelector('[webpage-table-select="delete_selected"]');
 			
             c.forEach((e) => {
                 e.addEventListener("click", function () {
@@ -52,7 +52,7 @@ var CreditsList = (function () {
 			
 			s.addEventListener("click", function () {
 				Swal.fire({
-					text: "Are you sure you want to delete selected credits?",
+					text: "Are you sure you want to delete selected webpages?",
 					icon: "warning",
 					showCancelButton: !0,
 					buttonsStyling: !1,
@@ -61,20 +61,19 @@ var CreditsList = (function () {
 					customClass: { confirmButton: "btn fw-bold btn-danger", cancelButton: "btn fw-bold btn-active-light-primary" },
 				}).then(function (t) {
 					if(t.value) {
-						var credits_id = [];
+						var webpages_id = [];
 						c.forEach((t) => {
 							if(t.checked) {
 								$(t).closest("tbody tr").remove()
 								var value = $(t).val();
-								credits_id.push(value);
+								webpages_id.push(value);
 							}
 						});
-						delete_selected_credits(credits_id);
-						
+						delete_selected_webpage(webpages_id);
 					} 
 					
 					t.value
-						? Swal.fire({ text: "You have deleted all selected credits!.", icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } })
+						? Swal.fire({ text: "You have deleted all selected webpages!.", icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } })
 							  .then(function () {
 								  o.querySelectorAll('[type="checkbox"]')[0].checked = !1;
 							  })
@@ -82,7 +81,7 @@ var CreditsList = (function () {
 								  a(), l();
 							  })
 						: "cancel" === t.dismiss &&
-						  Swal.fire({ text: "Selected credits was not deleted.", icon: "error", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } });
+						  Swal.fire({ text: "Selected webpages was not deleted.", icon: "error", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: { confirmButton: "btn fw-bold btn-primary" } });
 				});
 			});
         };
@@ -112,18 +111,18 @@ var CreditsList = (function () {
 					"processing": true,
 					"serverSide": true,
 					"sServerMethod": "POST",
-					"ajax": "script/credits/creditslist_data.php",
+					"ajax": "script/webpage/webpagelist_data.php",
                     columnDefs: [
                         { orderable: !1, targets: 0 },
-                        { orderable: !1, targets: 5 },
-						{"targets":[5], "className":"text-end"},
+                        { orderable: !1, targets: 3 },
+						{"targets":[3], "className":"text-end"},
                     ],
                 })).on("draw", function () {
                     l(), c(), a();
 					KTMenu.createInstances();
                 }),
                 l(),
-                document.querySelector('[credits-filter="search"]').addEventListener("keyup", function (t) {
+                document.querySelector('[webpage-filter="search"]').addEventListener("keyup", function (t) {
                     e.search(t.target.value).draw();
                 }),
                 c(),
@@ -133,11 +132,11 @@ var CreditsList = (function () {
     };
 })();
 KTUtil.onDOMContentLoaded(function () {
-    CreditsList.init();
+    WebpagesList.init();
 });
 
 $('body').on('click', '.status', function() {
-	var credits_id  = $(this).attr("data-id");
+	var webpage_id  = $(this).attr("data-id");
 	
 	if($(this).is(':checked')) {
 	   $(this).val('Y');	
@@ -147,22 +146,22 @@ $('body').on('click', '.status', function() {
 	   var status_val = 'N';
     }
 				
-	var dataString	= 'status_change=Y&credits_id=' + credits_id +'&status_val=' + status_val;
+	var dataString	= 'status_change=Y&webpage_id=' + webpage_id +'&status_val=' + status_val;
 	
 	$.ajax({
 	   type: "POST",
-	   url: 'index.php?file=credits/credits_list',
+	   url: 'index.php?file=webpage/webpage_list',
 	   data: dataString,
 	   success: function(response) 
 	   {}
 	});	
 });
 
-function delete_selected_credits(credits_id) {
-	var dataString	= 'delete_data=Y&credits_id=' + credits_id;					
+function delete_selected_webpage(webpages_id) {
+	var dataString	= 'delete_data=Y&webpages_id=' + webpages_id;					
 	$.ajax({
 	   type: "POST",
-	   url: 'index.php?file=credits/credits_list',
+	   url: 'index.php?file=webpage/webpage_list',
 	   data: dataString,
 	   success: function(response) 
 	   {
