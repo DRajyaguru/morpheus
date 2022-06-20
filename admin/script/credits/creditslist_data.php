@@ -15,7 +15,7 @@ $columns = array(
           array('db' => 'package_name',	
 	      'dt' => 1,
 		  'formatter' => function( $d, $row ) {
-		  	return '<div class="d-flex"><div class="ms-5"><a href="#" class="text-gray-600 text-hover-primary fs-5 fw-bolder mb-1" credits-filter="package_name">'.$row['package_name'].'</a></div>';
+		  	return '<a href="#" class="text-gray-800 text-hover-primary mb-1" credits-filter="package_name">'.$row['package_name'].'</a>';
 		  }),
 
     array('db' => 'credits',	

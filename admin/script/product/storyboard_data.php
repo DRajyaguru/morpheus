@@ -14,7 +14,8 @@ if(isset($_POST['storyboard']) && $_POST['storyboard'] == 'Y') {
 	  CURLOPT_CUSTOMREQUEST => "GET",
 	  CURLOPT_HTTPHEADER => [
 		"Authorization: Basic NDkwNzpTeldncm05bGJ3NzE5ZTRlYzIwYzc1OWJjYjM4OWI1N2Y3OGJhNGYwNDA5R1NaNHpNV05L",
-		"Content-Type: application/json"
+		"Content-Type: application/json",
+		"x-idomoo-api-mode: developer"
 	  ],
 	]);
 	

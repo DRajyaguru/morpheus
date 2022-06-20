@@ -16,7 +16,7 @@ $columns = array(
     array('db' => 'page_title',	
 	      'dt' => 1,
 		  'formatter' => function( $d, $row ) {
-		  	return '<div class="d-flex"><div class="ms-5"><a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" webpage-filter="page_title">'.$row['page_title'].'</a></div>';
+		  	return '<a href="#" class="text-gray-800 text-hover-primary mb-1" webpage-filter="page_title">'.$row['page_title'].'</a>';
 		  }),
 			
 	array('db' => 'status',

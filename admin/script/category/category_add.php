@@ -6,11 +6,12 @@ $left 		= ADMIN_TEMPLATE_PATH."admin/left/left.tpl";
 $middle 	= ADMIN_TEMPLATE_PATH."admin/middle/category/category_add.tpl";
 $footer		= ADMIN_TEMPLATE_PATH."admin/bottom/bottom.tpl";
 $indexfile	= ADMIN_TEMPLATE_PATH."admin/index.tpl";
-$page 		= "category";
 $title      = "Category Add";
 $top_title  = "Morpheus Add Category";
-$category_list       = array();
 $active_page = "video";
+$page_js_folder = 'category';
+$page_js_name   = 'save-category';
+$category_list  = array();
 
 // Category Add & Update Code
 if(isset($_POST['add_category']) && $_POST['add_category'] == 'Y') {
@@ -28,8 +29,7 @@ if(isset($_POST['add_category']) && $_POST['add_category'] == 'Y') {
 		$category_img = $_FILES['file']['name'];
 		$img_location = '../assets/uploads/category/'.$category_img;
 		move_uploaded_file($_FILES['file']['tmp_name'], $img_location);
-	}
-	
+	}	
 	if($_POST['category_id']!='') {
 		$category_id = $_POST['category_id'];
 		if($img_name=='') {
@@ -55,7 +55,7 @@ if(isset($_POST['add_category']) && $_POST['add_category'] == 'Y') {
 	}
 }
 
-
+// Category Name already exist Code
 if(isset($_POST['type']) && $_POST['type'] == 'category_name_check') {
 	$category_name = $_POST["category_name"];
 	$category_id = $_POST["category_id"]; 
@@ -74,7 +74,7 @@ if(isset($_POST['type']) && $_POST['type'] == 'category_name_check') {
 	exit;
 }
 
-//Clean URL check code
+// Category Clean URL already exist Code
 if(isset($_POST['type']) && $_POST['type'] == 'clean_url_check') {
 	$clean_url = $_POST["clean_url"];
 	$category_id = $_POST["category_id"]; 
@@ -93,7 +93,7 @@ if(isset($_POST['type']) && $_POST['type'] == 'clean_url_check') {
 	exit;
 }
 
-//Category data fetch for edit
+// Category Data fetch for Edit
 if(isset($_GET['axn']) && $_GET['axn'] == 'edit') {
 	$top_title  = "Morpheus Edit Category";
 	$title      = "Category Edit";
@@ -102,7 +102,7 @@ if(isset($_GET['axn']) && $_GET['axn'] == 'edit') {
 	$category_list = $db->getOne('category');
 }
 
-$localvars = array("header"=>$header,"left"=>$left,"middle"=>$middle,"footer"=>$footer,"title"=>$title,"page"=>$page,"top_title"=>$top_title,"category_list"=>$category_list,"active_page"=>$active_page);	
+$localvars = array("header"=>$header,"left"=>$left,"middle"=>$middle,"footer"=>$footer,"title"=>$title,"top_title"=>$top_title,"active_page"=>$active_page,"page_js_folder"=>$page_js_folder,"page_js_name"=>$page_js_name,"category_list"=>$category_list);	
 $localvars = array_merge($global_arr, $localvars);
 
 foreach($localvars as $key => $value) {

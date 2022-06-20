@@ -1,22 +1,32 @@
 <?php
 include_once( '../../lib/ssp.class.php');
 $tables  = array('orders');
-$fields  = array('o.order_id','o.status','o.total','o.order_date','c.first_name');
-$keys    = array('order_id');
+$fields  = array('o.orders_id','o.status','o.total_credits','o.order_date','c.first_name','c.last_name');
+$keys    = array('orders_id');
 $alias   = array('o');
 
 //Number of columns to show in order List
 $columns = array(
-	
-    array('db' => 'order_id',	
+    array('db' => 'orders_id',	
 	      'dt' => 0,
 		  'formatter' => function( $d, $row ) {
-		  	return '<div class="d-flex"><div class="ms-5"><a href="#" class="text-gray-600 text-hover-primary fs-5 fw-bolder mb-1" order-filter="order_id">'.$row['order_id'].'</a></div>';
+		  	return '<a href="#" class="text-gray-800 text-hover-primary fw-bolder">'.$row['orders_id'].'</a>';
 		  }),
+		  
     array('db' => 'first_name',	
-	      'dt' => 1),    
-	array('db' => 'status',
+	      'dt' => 1,
+		  'formatter' => function( $d, $row ) {
+		  	return '<a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bolder">'.$row['first_name'].' '.$row['last_name'].'</a>';
+		  }),
+	
+	array('db' => 'total_credits',	
 	      'dt' => 2,
+		  'formatter' => function( $d, $row ) {
+			  return '<span class="fw-bolder">'.$row['total_credits'].'</div>';
+		  }),	  
+		   
+	array('db' => 'status',
+	      'dt' => 3,
 		  'formatter' => function( $d, $row ) {
 			  $status = '';
 			  switch($row['status']){
@@ -37,11 +47,13 @@ $columns = array(
 					break;
 			  }
 			  return '<div class="badge '.$status.'">'.$row['status'].'</div>';
-		  }),
-	array('db' => 'total',	
-	      'dt' => 3),
+		  }),	
+		  
 	array('db' => 'order_date',	
-	      'dt' => 4),
+	      'dt' => 4,
+		  'formatter' => function( $d, $row ) {
+			  return '<span class="fw-bolder">'.$row['order_date'].'</div>';
+		  }),
  );
  
 $joins =  array('INNER JOIN customer c ON (o.customer_id = c.customer_id)');
