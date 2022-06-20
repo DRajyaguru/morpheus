@@ -5,13 +5,14 @@ $middle="customer/middle/middle.tpl";
 $bottom="customer/bottom/bottom.tpl";
 $indexfile="customer/index.tpl";
 	
-$title = 'Front Page';
+$title = 'Morpheus Homepage';
 $home_page = 'Home';
-	
-$localvars = array("top"=>$top,"bottom"=>$bottom,"middle"=>$middle,"title"=>$title,"home_page"=>$home_page);
-$localvars = array_merge($global_arr, $localvars);
 
-//while (list($key, $value) = each ($localvars))
+$db->orderBy ("display_order","asc");
+$category_list = $db->get('category');
+	
+$localvars = array("top"=>$top,"bottom"=>$bottom,"middle"=>$middle,"title"=>$title,"home_page"=>$home_page,"category_list"=>$category_list);
+$localvars = array_merge($global_arr, $localvars);
 
 foreach($localvars as $key => $value) {
   $smarty->assign($key,$value);
